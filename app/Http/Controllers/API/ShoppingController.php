@@ -30,10 +30,22 @@ class ShoppingController extends Controller
         $shoping = new Shopping();
         $shoping->name = $request->name;
         $shoping->createdate = $request->createdate;
-        $shoping->save();
+        if($shoping->save()){
+            return response()->json(
+                [
+                    'message' => 'Success',
+                ],
+            );
+        }
+        return response()->json(
+            [
+                'message' => 'Gagal',
+            ],
+        );
     }
 
 
+    
 
     public function update(AddShoppingRequest $request, $id)
     {
